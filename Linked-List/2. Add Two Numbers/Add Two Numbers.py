@@ -1,52 +1,43 @@
+# Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
 class Solution:
-    def getNumber(self, l):
-        pot = 1
-        base = 10
-        number = l.val
-        print("Initial number: ", number)
-        ne = l.next
-        while ne:
-            val = ne.val * (base ** pot)
-            print("Adding ", val)
-            number = number + val
-            pot = pot + 1
-            ne = ne.next
-        return number
-
-    def getListNode(self, n):
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         first = None
-        latest = None
-        while n > 0:
-            print("Current value of N", n)
-            val = n % 10
-            n = int(n/10)
-            print("Current val", val)
-            current = ListNode(val, None)
-            self.printListNode(current)
-            if latest is None:
-                first = current
-                latest = current
+        r = 0
+        resp = None
+        node1 = l1 
+        node2 = l2
+        while node1 or node2:
+            if node1 == None:
+                v1 = 0
             else:
-                latest.next = current
-                latest = latest.next
+                v1 = node1.val
+                node1 = node1.next
+            
+            if node2 == None:
+                v2 = 0
+            else:
+                v2 = node2.val
+                node2 = node2.next
+            if r > 0:
+                s = v1 + v2 + r
+                r = 0
+            else:
+                s = v1 + v2
+            if s > 9:
+                r = int(s/10)
+                s = int(s%10)
+            if resp == None:
+                resp = ListNode(s, None)
+                first = resp
+            else:
+                resp.next = ListNode(s, None)
+                resp = resp.next
+        if r > 0:
+            resp.next = ListNode(r, None)
+            resp = resp.next
         return first
-    
-    def printListNode(self, l):
-        while l:
-            print(l.val)
-            l = l.next
-
-
-sol = Solution()
-# v = sol.getNumber(ListNode(2, ListNode(4, ListNode(3, None))))
-# print(v)
-# sol.getListNode(342)
-l = sol.getListNode(807)
-sol.printListNode(l)
-l2 = sol.getListNode(1000000000000000000000000000001)
-sol.printListNode(l2)

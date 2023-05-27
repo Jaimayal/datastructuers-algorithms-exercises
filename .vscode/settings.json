@@ -1,8 +1,10 @@
 {
     "java.project.sourcePaths": [
+        "Two-Pointers/125. Valid Palindrome",
         "Stack/155. Min Stack",
         "LeetCode",
-        "Two-Pointers/125. Valid Palindrome"
+        "Array/128. Longest Consecutive Sequence",
+        "Array/36. Valid Sudoku"
     ],
     "java.debug.settings.onBuildFailureProceed": true
 }
